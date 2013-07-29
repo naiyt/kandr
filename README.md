@@ -1,4 +1,4 @@
-Solutions from the book "C Programming Language"
+Solutions from "The C Programming Language"
 ================================================
 
 While I've learned a fair amount of C++ in school, I've realized my basic C Knowledge is lacking. I've thus decided to read through all of "The C Programming Language" by Kernighan and Ritchie, and do all of the excercises they recommend. For fun and glory!
