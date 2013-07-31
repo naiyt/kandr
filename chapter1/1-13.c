@@ -1,5 +1,3 @@
-// NOT finished
-
 /* Excercise 1-13
 
    "Write a program to print a h istogram of the lengths of words in its input. It is easy to
@@ -7,7 +5,7 @@
 
 #include <stdio.h>
 
-#define MAXLENGTH 20
+#define MAXLENGTH 40 
 #define IN  1
 #define OUT 0
 
@@ -26,10 +24,12 @@ main() {
     }
 
 
-    while((c = getchar() != EOF)) {
+    while((c = getchar()) != EOF) {
        if(state == OUT && currentCount != 0) {
             wordArray[currentCount] += 1;       
+            currentCount = 0;
        }
+
        if(c == ' ' || c == '\n' || c == '\t') {
             if(state == IN) {
                 state = OUT; 
@@ -41,14 +41,13 @@ main() {
             }
             currentCount += 1;
        }
-
     }
 
-    for(i = 0; i < MAXLENGTH + 1; i++) {
-        printf("%d - ", i);
+    for(i = 1; i < MAXLENGTH + 1; i++) {
+        printf("%2d - ", i);
 
         for(j = wordArray[i]; j > 0; j--) {
-            printf("*");
+            printf("#");
         }
         printf("\n");
     } 
