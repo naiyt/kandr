@@ -5,9 +5,15 @@
    with only one test inside the loop and measure the difference in
    runtime. */
 
+// In terms of testing runtimes, I ran them both with arrays of
+// 1,000,000 elements, and searched them each 1,000,000 times.
+// The original finished in .29 seconds and the revised
+// finished in .27 seconds. Negligble difference, so the one with
+// better readabilty would likely win in this situation.
+
 #include <stdio.h>
 #include <time.h>
-#define MAXARRAYLEN 10 
+#define MAXARRAYLEN 1000000 
 
 // The method from the book, to test runtime
 int kandrbinsearch(int x, int v[], int n) {
@@ -33,7 +39,7 @@ int myBinSearch(int x, int v[], int n) {
     int low, high, mid;
     low = 0; 
     high = n - 1;
-
+    mid = (low+high)/2;
     // Test in the loop declaration whether we're at the right
     // location
     while(low <= high && x != v[mid]) {
@@ -52,24 +58,20 @@ main() {
     int i;
     for(i = 0; i < MAXARRAYLEN; ++i) {
         arrayTest[i] = i;
-        printf("%d - %d\n", arrayTest[i], i);
     }
-    printf("Hi");
 
     clock_t begin, end;
     
     begin = clock();
-    for(i = 0; i < 500; i++) {
-        printf("First: %d", i);
-        kandrbinsearch(-1, arrayTest, MAXARRAYLEN);
+    for(i = 0; i < 1000000; i++) {
+        kandrbinsearch(MAXARRAYLEN+1, arrayTest, MAXARRAYLEN);
     }
     end = clock();
     double timeFirst = (double)(end - begin) / CLOCKS_PER_SEC;
 
     begin = clock();
-    for(i = 0; i < 500; i++) {
-        printf("Second: %d", i);
-       myBinSearch(-1, arrayTest, MAXARRAYLEN);
+    for(i = 0; i < 1000000; i++) {
+       myBinSearch(MAXARRAYLEN+1, arrayTest, MAXARRAYLEN);
     }
     end = clock();
     double timeSecond = (double)(end - begin) / CLOCKS_PER_SEC;
