@@ -57,9 +57,10 @@ int strindex(char source[], char searchFor[]) {
         // We've moved i one to far at this point, so move it back,
         // then return the position of i minus the length of our search
         // phrase to get the position counting from the left.
-        if(k == -1)
+        if(k == -1) {
             i++;
             return i - searchLen;
+        }
     }
     return -1;
 }
