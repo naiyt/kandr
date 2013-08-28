@@ -5,13 +5,18 @@
 #include <string.h>
 #define MAX 100
 
-// Borked
 int strend(char *s, char *t) {
-    
-    *s = *s + (*s - *t);
+    // String 2 is larger than string 1
+    if(strlen(s) < strlen(t))
+            return 0;
 
+    int i;
+    int diff = strlen(s) - strlen(t);
+    for(i = 0; i < diff; i++) // Move *s to t's starting pos
+        *s++;
+
+    // Compare s to to until the end of s
     while(*s) {
-        printf("%c == %c\n", *s, *t);
         if(*s++ != *t++)
             return 0;
     }
